@@ -7,7 +7,9 @@ import { PrismaService } from 'src/prisma/prisma.service';
 export class BooksService {
   constructor(private prisma: PrismaService) {}
   create(createBookDto: CreateBookDto) {
-    return 'This action adds a new book';
+    return this.prisma.book.create({
+      data: createBookDto,
+    });
   }
 
   findAll() {
@@ -15,14 +17,20 @@ export class BooksService {
   }
 
   findOne(id: number) {
-    return `This action returns a #${id} book`;
+    return this.prisma.book.findUnique({
+      where: { id },
+    });
   }
-
   update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
+    return this.prisma.book.update({
+      where: { id },
+      data: updateBookDto,
+    });
   }
 
   remove(id: number) {
-    return `This action removes a #${id} book`;
+    return this.prisma.book.delete({
+      where: { id },
+    });
   }
 }
