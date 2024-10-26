@@ -1,6 +1,8 @@
 export class CreateBookDto {
     title: string;
+    subtitle?: string;
     author: string;
+    img?: string;
     genres: Genres[];
     hasRepresentation: boolean;
     tier: Tiers
